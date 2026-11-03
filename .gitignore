@@ -1,0 +1,5 @@
+firmware/Taxile/config.h
+*.csv
+__pycache__/
+.pytest_cache/
+.DS_Store
