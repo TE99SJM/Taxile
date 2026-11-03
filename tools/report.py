@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+"""Summarize Taxile append-only CSV as local-day mileage and per-trip mileage."""
+import argparse
+import csv
+from collections import defaultdict
+from datetime import datetime, timezone
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+
+def summarize(paths, tz_name="America/Chicago"):
+    tz = ZoneInfo(tz_name)
+    daily = defaultdict(float)
+    trips = defaultdict(float)
+    invalid_time_miles = 0.0
+    rows = 0
+    duplicates = 0
+    seen = set()
+    for path in paths:
+        with open(path, newline="", encoding="utf-8-sig") as fp:
+            for row in csv.DictReader(fp):
+                if row.get("event") != "SAMPLE":
+                    continue
+                try:
+                    miles = float(row["delta_miles"])
+                    epoch = int(row["epoch_utc"])
+                    valid = row["time_valid"] == "1"
+                    boot = row["boot_id"]
+                    trip = row["trip_id"]
+                    uptime = row["uptime_ms"]
+                    if not 0 <= miles < 10:  # sanity bound per 2-sec interval
+                        continue
+                except (ValueError, KeyError, TypeError):
+                    continue
+                key = (boot, trip, uptime, row["event"])
+                if key in seen:
+                    duplicates += 1
+                    continue
+                seen.add(key)
+                rows += 1
+                trips[(boot, trip)] += miles
+                if valid and epoch >= 1704067200:
+                    day = datetime.fromtimestamp(epoch, timezone.utc).astimezone(tz).date().isoformat()
+                    daily[day] += miles
+                else:
+                    invalid_time_miles += miles
+    return daily, trips, invalid_time_miles, rows, duplicates
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("csv", type=Path, nargs="+", help="Downloaded Taxile CSV files")
+    parser.add_argument("--tz", default="America/Chicago", help="IANA local timezone")
+    parser.add_argument("--out", type=Path, help="Write daily totals to a CSV")
+    args = parser.parse_args()
+    daily, trips, unknown, n, duplicates = summarize(args.csv, args.tz)
+    print(f"Accepted samples: {n}; repeated rows skipped: {duplicates}")
+    print("Daily mileage estimates:")
+    for day, miles in sorted(daily.items()):
+        print(f"  {day}: {miles:.3f} miles")
+    print(f"Distance without valid UTC time: {unknown:.3f} miles (excluded from daily totals)")
+    print(f"Trips found: {len(trips)}; total estimated distance: {sum(trips.values()):.3f} miles")
+    if args.out:
+        with args.out.open("w", newline="", encoding="utf-8") as fp:
+            w = csv.writer(fp)
+            w.writerow(["date", "estimated_miles"])
+            w.writerows((day, f"{miles:.5f}") for day, miles in sorted(daily.items()))
+        print(f"Saved {args.out}")
+
+
+if __name__ == "__main__":
+    main()
