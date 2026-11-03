@@ -1,0 +1,14 @@
+Taxile Noncommercial License, Version 1.0
+Copyright (c) 2026 TE99SJM. All rights reserved except as expressly licensed.
+
+Permission is granted, free of charge, to any person obtaining a copy of the original Taxile software and documentation (the "Software") to use, copy, modify, and redistribute the Software in source or compiled form for NONCOMMERCIAL purposes only, subject to these conditions:
+
+1. Redistributions must retain this copyright notice, license text, and any attribution notices.
+2. You may not sell, rent, sublicense for a fee, monetize, offer as part of a paid service or product, or otherwise commercially exploit the Software or derivatives without separate written permission from the copyright holder.
+3. You may not claim original authorship or imply endorsement by the copyright holder.
+4. Third-party software, including Freematics libraries and ESP32 components, remains subject to its own licenses. This license grants no rights to third-party materials.
+5. This license does not convey any trademark rights.
+
+"Noncommercial" means not primarily intended for or directed toward commercial advantage or monetary compensation. When in doubt, obtain written permission from the copyright holder.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR USE OR OTHER DEALINGS IN THE SOFTWARE.
