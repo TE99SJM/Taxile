@@ -1,0 +1,22 @@
+name: Firmware and receiver
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r desktop/requirements.txt
+      - run: python -m unittest discover -s tests -v
+      - run: g++ -std=c++11 -Wall -Wextra -Ifirmware/Taxile tests/native/test_mileage.cpp -o /tmp/test-mileage && /tmp/test-mileage
+      - run: pip install platformio==6.2.0
+      - run: pio run
+      - uses: actions/upload-artifact@v4
+        with:
+          name: taxile-oneplus-esp32
+          path: |
+            .pio/build/oneplus/firmware.bin
+            .pio/build/oneplus/bootloader.bin
+            .pio/build/oneplus/partitions.bin

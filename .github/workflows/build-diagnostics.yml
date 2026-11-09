@@ -1,0 +1,35 @@
+name: Build Taxile diagnostics
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  firmware:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install platformio==6.2.0 requests==2.32.3
+      - run: python -m unittest discover -s tests -v
+      - run: g++ -std=c++17 -Wall -Wextra -Werror tests/native/test_diagnostics.cpp -o /tmp/diagnostics && /tmp/diagnostics
+      - run: g++ -std=c++17 -Wall -Wextra -Werror tests/native/test_vehicle.cpp -o /tmp/vehicle && /tmp/vehicle
+      - run: pio run
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Taxile-ONE-Plus-0.4.0-firmware
+          path: |
+            .pio/build/oneplus/firmware.bin
+            .pio/build/oneplus/bootloader.bin
+            .pio/build/oneplus/partitions.bin
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r desktop/requirements.txt pyinstaller==6.11.1
+      - run: python -m PyInstaller --clean --noconfirm --onefile --windowed --name Taxile-PC desktop/taxile_pc.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Taxile-PC-Windows
+          path: dist/Taxile-PC.exe

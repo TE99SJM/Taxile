@@ -1,0 +1,20 @@
+services:
+  taxile:
+    build: ./server
+    restart: unless-stopped
+    ports:
+      - "8098:8098"
+    environment:
+      TAXILE_TOKEN: ${TAXILE_TOKEN:?Set TAXILE_TOKEN in .env}
+      TAXILE_TZ: America/Chicago
+      TAXILE_DB: /data/taxile.sqlite3
+    volumes:
+      - ./data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8098/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]

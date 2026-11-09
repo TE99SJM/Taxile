@@ -3,3 +3,15 @@ firmware/Taxile/config.h
 __pycache__/
 .pytest_cache/
 .DS_Store
+.pio/
+.env
+data/
+*.bin
+*.elf
+*.map
+
+# Desktop builds
+desktop/.venv/
+desktop/build/
+desktop/dist/
+*.spec
