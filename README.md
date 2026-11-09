@@ -4,6 +4,10 @@ This version extends the 0.2.0 package with a Windows desktop app, authenticated
 
 **Build status:** ESP32 firmware compilation passed (1,055,853 bytes flash, 48,324 bytes static RAM). Compiled images are included under `prebuilt/`. All 21 Python tests and native diagnostics/mileage tests passed. Windows launcher/source and an EXE build script are included; no compiled Windows EXE is included. Device and Windows UI testing remain outstanding. Confirm the hardware target and make a full flash backup before flashing.
 
+## Touch-friendly desktop app
+
+The PC app now includes large buttons and fields, a scrollable tablet layout, a built-in touch keyboard, full-screen toggle, swipeable results, wide scrollbars and a large code-clear confirmation. It targets Windows tablets; Android/iPad support is not included. This app update still uses 0.4.0 firmware and does not require reflashing an already-updated ONE+. Physical tablet UI validation remains outstanding. See [desktop/README.md](desktop/README.md).
+
 ## Automatic vehicle identification
 
 The ONE+ requests the vehicle VIN with standard OBD-II Mode 09 PID 02 at each connection. Normal unplug/replug into another vehicle starts a fresh boot and fresh VIN lookup. Every new trip freezes the current identity, and each mileage event carries `vehicle_id`, `vin` and `vehicle_identification`. It never persists a last-vehicle VIN into the next connection.

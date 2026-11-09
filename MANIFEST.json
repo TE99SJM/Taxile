@@ -9,16 +9,16 @@
     ".github/workflows/test.yml": "dbf49b2ec45d2499ab04a75a8b76873b12a435c3d1f5b4ab21f11496f7e5958e",
     ".gitignore": "8680d06e0451d73c4d5888f6c352d3784831c1582660ab8ed560d8edcf0eec92",
     "Build-Firmware.bat": "a981750b354b30e493e884acab67de6dffec96856afeefc48e0aa05198bb32e8",
-    "CHANGELOG.md": "d238e2b7cdbed52f0f5518eb4837892c14007b9e1a3fe0e907a3f37d0074b598",
+    "CHANGELOG.md": "d5f0095311e259bb33f93626365a8cb85528d81452b6b17aa3a5728fac59707b",
     "LICENSE": "2e803630b842a366bc0b690f31b339c9dd8d278e8d5c15b90b27591c881c29b0",
-    "README.md": "fdcaf91d08d9e2d68e67d4fbd8d7b59ddefb8a8fecaca081afa347fc58a5d437",
+    "README.md": "4f0d2d053aaf7120a66318a9af5f315b222ffa9b88c0bf2a4a6e264f288fcfe9",
     "THIRD_PARTY.md": "42ac7b6a60c2fea14ab1cae8fbd0224fa9cd57ee65d490abd792cc831e93ba40",
     "compose.yaml": "c294f71a9b146fa305462d13e776838cf2d6a2d87403b158719c0d5f8601a3cb",
     "desktop/Build-Windows-EXE.bat": "0e1b59201e81b1e022be0c69b732ed0b63e0b64ee40e68562f4c5d1ae06ccd96",
-    "desktop/README.md": "379eeb52b0a58acfbbc62fd4ccbc19a261ab1632b9e58793b561da5f0ba3b2f1",
+    "desktop/README.md": "1582a08b2cd4bc40ba66095871faa669986aa724af5251034c562d3eee18b8c3",
     "desktop/Start-Taxile.bat": "f56baf0365d7d9f05bb690298ab5e5ca215644648ee89ac82dc6d57bb27b7774",
     "desktop/requirements.txt": "4b8183101fd19f071771805a42a31fbb234a7961921fdb8b783a279755a1b5d5",
-    "desktop/taxile_pc.py": "a95bbbfcfb39615d1886de073faee0fd54819a59a188cc2bfc0d3f58fabd5cd4",
+    "desktop/taxile_pc.py": "7d4e20cd939e57063b4369c8fe3b4b194aaccef72f86205010fb3fdbdc912f94",
     "docs/PROTOCOL.md": "a5ee098fcd8ccc29128aff16ece47adfe1d976b890fb0c909dfcd92d5c5b6628",
     "docs/SETUP.md": "4baac2f70a446be2ebb01c991087cea6c1a5e7242683c3613746e98c10c2b09c",
     "docs/VALIDATION.md": "91406eb7442104fb116ab7fd4c4905eeea36846dbb41b46e89ff9200cc38de1b",
@@ -81,5 +81,7 @@
     "flash_bytes": 1055853,
     "static_ram_bytes": 48324
   },
-  "python_tests_passed": 21
+  "python_tests_passed": 21,
+  "desktop_update": "touch-controls",
+  "tablet_ui_tested": false
 }

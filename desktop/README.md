@@ -25,3 +25,9 @@ From the package root: `python -m unittest discover -s tests -v`. Native parser 
 The production parser handles header-free ELM spaced hex, multiple ECU replies, numbered continuation lines, CAN DTC counts and duplicate codes. It rejects missing acknowledgements, truncated codes and common adapter errors rather than showing an empty successful scan. Actual adapter response compatibility and Windows UI behavior need device testing.
 
 Vehicle VIN and the frozen trip VIN are shown in Connect / Status. Mileage reports and CSV exports are grouped by vehicle on the receiving server. No last-vehicle fallback is used when the ECU VIN is unavailable.
+
+## Touch controls
+
+The desktop app now uses large buttons and text fields, a two-column action grid, a vertically scrollable layout for portrait/landscape windows, wide scrollbars, swipeable results, and large result paging buttons. Tap a connection field and then **Touch keyboard** for a built-in keyboard with letters, Shift, symbols, Space and Backspace. Show password has a large toggle. Full screen toggles tablet mode; F11 also toggles it and Escape exits it. Clearing codes uses a separate confirmation with large Cancel and Confirm buttons.
+
+This desktop app targets Windows tablets (and desktop Linux/macOS with Tk). It does not run as an Android or iPad app. No new firmware flash is required for this layout update; it still connects to Taxile 0.4.0 firmware. UI syntax and existing client tests were checked; physical touch gestures, Windows keyboard behavior and tablet DPI/layout still need validation on the actual tablet.

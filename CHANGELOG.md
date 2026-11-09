@@ -1,3 +1,11 @@
+# Desktop touch update (firmware remains 0.4.0)
+
+- Adds large touch controls and text fields, two-column actions and a scrollable layout.
+- Adds a built-in touch keyboard, password visibility toggle and full-screen toggle.
+- Adds swipeable results, wide scrollbars and large result paging buttons.
+- Replaces the code-clear confirmation with a touch-sized modal.
+- Preserves diagnostics protocol and existing 0.4.0 firmware compatibility.
+
 # 0.4.0
 
 - Reads VIN automatically at every OBD connection and freezes it per trip.
